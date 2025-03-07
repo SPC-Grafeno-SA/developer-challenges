@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_07_074138) do
     t.integer "access_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["short_url"], name: "index_urls_on_short_url"
+    t.index ["short_url"], name: "index_urls_on_short_url", unique: true
   end
 
   add_foreign_key "access_logs", "urls"

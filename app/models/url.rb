@@ -4,8 +4,8 @@ class Url < ApplicationRecord
   has_many :access_logs, dependent: :destroy
 
   validates :original_url, presence: true, format: { with: URI::regexp(%w[http https]) }
-  validates :short_url, presence: true, uniqueness: true
-  validates :expires_at, allow_nil: true, date: { after: Time.current }
+  validates :short_url, presence: true, uniqueness: { case_sensitive: true }
+  validates :expires_at, allow_nil: true, comparison: { greater_than: -> { Time.current } }
 
   before_validation :generate_short_url, on: :create
 
