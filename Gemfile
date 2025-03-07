@@ -54,4 +54,3 @@ group :development do
   gem 'solargraph'
   gem 'solargraph-rails'
 end
-

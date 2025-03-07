@@ -17,7 +17,7 @@ class UrlsController < ApplicationController
       AccessLog.create(url: url, accessed_at: Time.current)
       redirect_to url.original_url, allow_other_host: true
     else
-      render json: { error: "URL not found or expired" }, status: :not_found
+      render json: { error: 'URL não encontrada ou expireda' }, status: :not_found
     end
   end
 
@@ -29,7 +29,7 @@ class UrlsController < ApplicationController
         access_logs: url.access_logs.order(accessed_at: :desc).map { |log| { accessed_at: log.accessed_at } }
       }
     else
-      render json: { error: "URL not found" }, status: :not_found
+      render json: { error: 'URL não encontrada' }, status: :not_found
     end
   end
 
