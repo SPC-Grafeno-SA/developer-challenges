@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "3be005c3-fb16-482c-a1b0-eb77796e4eef",
+		"name": "Url Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4197184",
+		"_collection_link": "https://solar-desert-696807.postman.co/workspace/APIs~6ecdfc9c-e0ab-4904-b3d8-6863f7276c60/collection/4197184-3be005c3-fb16-482c-a1b0-eb77796e4eef?action=share&source=collection_link&creator=4197184"
+	},
+	"item": [
+		{
+			"name": "Encurtar a URL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": {\"original_url\": \"http://example.com\"}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/urls"
+			},
+			"response": []
+		},
+		{
+			"name": "Example Domain",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/O7jh0YEiH"
+			},
+			"response": []
+		},
+		{
+			"name": "Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/O7jh0YEiH/stats"
+			},
+			"response": []
+		}
+	]
+}

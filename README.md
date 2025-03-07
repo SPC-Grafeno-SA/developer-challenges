@@ -1,52 +1,24 @@
-# Desafios para desenvolvedores SPC Grafeno
+# README
 
-Desafios para desenvolvedores da SPC Grafeno.
+Sejam bem-vindos ao URL SHORTENER. Um pequeno sistema que recebe uma URL, encurta seu tamanho, conta e armazena os acessos a URL encurtada
+e também mostra um histórico de acessos dessa URL encurtada.
 
-Esta é uma etapa importante do processo de formação de equipe e esperamos que você aproveite este momento para podermos conhecer melhor suas habilidades técnicas. Para isso, seguem algumas recomendações:
-- Não copie da internet.
-- Não copie de outro candidato.
-- Dedique tempo suficiente durante a solução do desafio e foque no que é importante para funcionar, pense como um produto que precisa ser entregue para o cliente final.
-- Leia com atenção o desafio proposto antes de iniciar a solução.
+Para realizar a "mágica", antes você deve clonar o repositório e uma vez na sua máquina:
 
-## Desafio proposto: Encurtador de URL
+* Executar `docker compose build`
 
-Implementar um serviço que permita encurtar URLs a fim de torná-las mais legíveis e fáceis de compartilhar com outras pessoas.
+* Seguido de `docker compose up`
 
-O serviço deve ser capaz de encurtar uma URL longa, desfazer o encurtamento quando a URL curta for acessada e redirecionar para a URL original cadastrada pelo usuário.
+* Certifique-se de rodar as migrations após a inicialização através do comando: `docker compose run web rails db:migrate`
 
-Envie também quaisquer documentações da solução, endpoints, arquitetura, que você tenha utilizado durante o desenvolvimento, pois será um plus.
+* Com o ambiente localhost rodando, você pode encurtar uma url através do comando `curl -X POST -H "Content-Type: application/json" -d '{"url": {"original_url": "http://example.com"}}' http://localhost:3000/urls`
 
-### Requisitos de negócio
-- No cadastro, receber uma URL longa como parâmetro obrigatório.
-- O encurtamento deve ser composto por no mínimo 5 e no máximo 10 caracteres.
-- Apenas letras e números devem ser utilizados na composição da URL curta.
-- Contar e armazenar a quantidade de acessos da URL curta.
-- Ter histórico de acesso da URL curta com a data de acesso.
-- A URL encurtada poderá ter data de expiração, neste caso, considere receber e validar esse parâmetro opcional.
-- Ao acessar uma URL curta com data de expiração passada, devolver resposta como registro não encontrado.
-- Não é necessário frontend, apenas API.
+* Que te dará uma resposta em JSON com uma URL encurtada contendo um valor aleatório, entre 5 a 10 caracteres, como por exemplo: `{"short_url":"http://localhost:3000/2btHq"}`
 
-### Requisitos técnicos
-- Deve ser uma API em json.
-- Considere a melhor escolha dos verbos HTTP para cada cenário.
-- Não é necessário se preocupar com autenticação, mas se quiser implementar, nos mostre como você faria.
-- Utilize o banco de dados e outras tecnologias de sua escolha para compor a solução proposta.
-- É necessário que a sua solução execute em Docker.
+* Se você quiser acessar a URL original através da encurtada que foi gerada é muito fácil, basta digitar: `curl -v http://localhost:3000/2btHq`. Na resposta, é só observar o campo `< location: http://example.com`
 
-## Entrega e avaliação do desafio
+* E por último os "stats" da URL encurtada. Para você saber quantas vezes ela foi acessada e um log com as datas de acesso, basta fazer: `curl  http://localhost:3000/2btHq/stats`
 
-Faça um fork deste repositório, crie uma branch com a solução proposta e submeta o PR para o upstream, assim poderemos revisar a solução juntos.
+* Você também pode agregar uma data de expiração à URL encurtada, seguindo assim: `curl -X POST -H "Content-Type: application/json" -d '{"url": {"original_url": "http://example.com", "expires_at":"2025-03-20"}}' http://localhost:3000/urls`
 
-Boas práticas de desenvolvimento são importantes e serão analisadas, como: testes, DRY, 12-factor App, etc. Também vamos analisar a organização do código de forma geral.
-
-É esperado que sua solução tenha um README com instruções de setup e consigamos executá-la em poucos passos sem complicações.
-
-É preferível que você utilize Ruby on Rails, pois faz parte da nossa principal stack de desenvolvimento, mas você também pode resolver com outras linguagens e frameworks das quais se sente mais confortável.
-
-Queremos que você mostre a melhor solução que você pode criar.
-
-Você tem o prazo de 3 dias corridos a partir do recebimento do desafio, e a entrega é considerada com a abertura do PR.
-
-## Dúvidas
-
-Em caso de dúvidas, entre em contato com: guilherme.pereira@spcgrafeno.com.br ou marcos.cordeiro@spcgrafeno.com.br
+* Espero que tenham gostado!
