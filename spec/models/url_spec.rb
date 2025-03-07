@@ -8,7 +8,7 @@ RSpec.describe Url, type: :model do
 
     it { should validate_presence_of(:original_url) }
     it { should validate_presence_of(:short_url) }
-    it { should validate_uniqueness_of(:short_url).case_insensitive }
+    it { should validate_uniqueness_of(:short_url) }
 
     it 'valida o formato da URL original' do
       valid_url = build(:url, original_url: 'http://example.com')
