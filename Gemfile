@@ -41,6 +41,7 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri windows ]
   gem 'faker'
   gem 'pry-rails'
+  gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
 end
