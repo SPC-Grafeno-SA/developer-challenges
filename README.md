@@ -1,52 +1,42 @@
-# Desafios para desenvolvedores SPC Grafeno
+# README
 
-Desafios para desenvolvedores da SPC Grafeno.
+# Encurtador de URLs
 
-Esta é uma etapa importante do processo de formação de equipe e esperamos que você aproveite este momento para podermos conhecer melhor suas habilidades técnicas. Para isso, seguem algumas recomendações:
-- Não copie da internet.
-- Não copie de outro candidato.
-- Dedique tempo suficiente durante a solução do desafio e foque no que é importante para funcionar, pense como um produto que precisa ser entregue para o cliente final.
-- Leia com atenção o desafio proposto antes de iniciar a solução.
+Este é um sistema simples de encurtamento de URLs desenvolvido com Ruby on Rails, utilizando Docker e Docker Compose para facilitar a configuração e execução. O sistema fornece uma API para criar URLs encurtadas e acessar URLs encurtadas, registrando acessos.
 
-## Desafio proposto: Encurtador de URL
+# Tecnologias Utilizadas
+• Ruby on Rails - Framework para desenvolvimento da API
 
-Implementar um serviço que permita encurtar URLs a fim de torná-las mais legíveis e fáceis de compartilhar com outras pessoas.
+• PostgreSQL - Banco de dados para armazenar URLs
 
-O serviço deve ser capaz de encurtar uma URL longa, desfazer o encurtamento quando a URL curta for acessada e redirecionar para a URL original cadastrada pelo usuário.
+•	Docker & Docker Compose - Containerização da aplicação
 
-Envie também quaisquer documentações da solução, endpoints, arquitetura, que você tenha utilizado durante o desenvolvimento, pois será um plus.
+•	RSpec - Testes automatizados
 
-### Requisitos de negócio
-- No cadastro, receber uma URL longa como parâmetro obrigatório.
-- O encurtamento deve ser composto por no mínimo 5 e no máximo 10 caracteres.
-- Apenas letras e números devem ser utilizados na composição da URL curta.
-- Contar e armazenar a quantidade de acessos da URL curta.
-- Ter histórico de acesso da URL curta com a data de acesso.
-- A URL encurtada poderá ter data de expiração, neste caso, considere receber e validar esse parâmetro opcional.
-- Ao acessar uma URL curta com data de expiração passada, devolver resposta como registro não encontrado.
-- Não é necessário frontend, apenas API.
+# Clonar o repositório
 
-### Requisitos técnicos
-- Deve ser uma API em json.
-- Considere a melhor escolha dos verbos HTTP para cada cenário.
-- Não é necessário se preocupar com autenticação, mas se quiser implementar, nos mostre como você faria.
-- Utilize o banco de dados e outras tecnologias de sua escolha para compor a solução proposta.
-- É necessário que a sua solução execute em Docker.
+# Criar o arquivo .env
 
-## Entrega e avaliação do desafio
+Copie o arquivo .env.sample e renomeie para .env:
 
-Faça um fork deste repositório, crie uma branch com a solução proposta e submeta o PR para o upstream, assim poderemos revisar a solução juntos.
+`cp .env.sample .env`
 
-Boas práticas de desenvolvimento são importantes e serão analisadas, como: testes, DRY, 12-factor App, etc. Também vamos analisar a organização do código de forma geral.
+# Subir os containers com Docker Compose
 
-É esperado que sua solução tenha um README com instruções de setup e consigamos executá-la em poucos passos sem complicações.
+`docker-compose up -d --build`
 
-É preferível que você utilize Ruby on Rails, pois faz parte da nossa principal stack de desenvolvimento, mas você também pode resolver com outras linguagens e frameworks das quais se sente mais confortável.
+# Criar o banco de dados
 
-Queremos que você mostre a melhor solução que você pode criar.
+`docker-compose exec app bin/rails db:create db:migrate`
 
-Você tem o prazo de 3 dias corridos a partir do recebimento do desafio, e a entrega é considerada com a abertura do PR.
+# Rodar os testes
 
-## Dúvidas
+`docker-compose exec app bundle exec rspec`
 
-Em caso de dúvidas, entre em contato com: guilherme.pereira@spcgrafeno.com.br ou marcos.cordeiro@spcgrafeno.com.br
+# Endpoints da API
+
+A API pode ser testada via Postman, cURL ou qualquer cliente HTTP. Os endpoints disponíveis incluem:
+
+### Criar uma URL encurtada e visitar uma url encurtada
+
+Os arquivos curl estão na pasta postman
